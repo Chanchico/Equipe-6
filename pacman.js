@@ -22,6 +22,11 @@ var NONE        = 4,
     Pacman      = {};
 
 Pacman.FPS = 30;
+var white = "#F6E8EA";
+var pink = "#EF626C";
+var black = "#000000";
+var grey = "#312F2F";
+var blue = "#7192BE";
 
 Pacman.Ghost = function (game, map, colour) {
 
@@ -129,12 +134,12 @@ Pacman.Ghost = function (game, map, colour) {
     function getColour() { 
         if (eatable) { 
             if (secondsAgo(eatable) > 5) { 
-                return game.getTick() % 20 > 10 ? "#FFFFFF" : "#0000BB";
+                return game.getTick() % 20 > 10 ? "#C797D2" : grey;
             } else { 
-                return "#0000BB";
+                return "#C797D2";
             }
         } else if(eaten) { 
-            return "#222";
+            return white;
         } 
         return colour;
     };
@@ -179,7 +184,7 @@ Pacman.Ghost = function (game, map, colour) {
         ctx.fill();
 
         ctx.beginPath();
-        ctx.fillStyle = "#FFF";
+        ctx.fillStyle = white;
         ctx.arc(left + 6,top + 6, s / 6, 0, 300, false);
         ctx.arc((left + s) - 6,top + 6, s / 6, 0, 300, false);
         ctx.closePath();
@@ -193,7 +198,7 @@ Pacman.Ghost = function (game, map, colour) {
         off[DOWN]  = [0, f];
 
         ctx.beginPath();
-        ctx.fillStyle = "#000";
+        ctx.fillStyle = black;
         ctx.arc(left+6+off[direction][0], top+6+off[direction][1], 
                 s / 15, 0, 300, false);
         ctx.arc((left+s)-6+off[direction][0], top+6+off[direction][1], 
@@ -479,7 +484,7 @@ Pacman.User = function (game, map) {
             return;
         }
 
-        ctx.fillStyle = "#FFFF00";
+        ctx.fillStyle = blue;
         ctx.beginPath();        
         ctx.moveTo(((position.x/10) * size) + half, 
                    ((position.y/10) * size) + half);
@@ -496,7 +501,7 @@ Pacman.User = function (game, map) {
         var s     = map.blockSize, 
             angle = calcAngle(direction, position);
 
-        ctx.fillStyle = "#FFFF00";
+        ctx.fillStyle = blue;
 
         ctx.beginPath();        
 
@@ -559,7 +564,7 @@ Pacman.Map = function (size) {
 
         var i, j, p, line;
         
-        ctx.strokeStyle = "#0000FF";
+        ctx.strokeStyle = pink;
         ctx.lineWidth   = 5;
         ctx.lineCap     = "round";
         
@@ -611,11 +616,11 @@ Pacman.Map = function (size) {
                 if (map[i][j] === Pacman.PILL) {
                     ctx.beginPath();
 
-                    ctx.fillStyle = "#000";
+                    ctx.fillStyle = white;
 		            ctx.fillRect((j * blockSize), (i * blockSize), 
                                  blockSize, blockSize);
 
-                    ctx.fillStyle = "#FFF";
+                    ctx.fillStyle = grey;
                     ctx.arc((j * blockSize) + blockSize / 2,
                             (i * blockSize) + blockSize / 2,
                             Math.abs(5 - (pillSize/3)), 
@@ -632,7 +637,7 @@ Pacman.Map = function (size) {
         
         var i, j, size = blockSize;
 
-        ctx.fillStyle = "#000";
+        ctx.fillStyle = white;
 	    ctx.fillRect(0, 0, width * size, height * size);
 
         drawWall(ctx);
@@ -657,12 +662,12 @@ Pacman.Map = function (size) {
         if (layout === Pacman.EMPTY || layout === Pacman.BLOCK || 
             layout === Pacman.BISCUIT) {
             
-            ctx.fillStyle = "#000";
+            ctx.fillStyle = white;
 		    ctx.fillRect((x * blockSize), (y * blockSize), 
                          blockSize, blockSize);
 
             if (layout === Pacman.BISCUIT) {
-                ctx.fillStyle = "#FFF";
+                ctx.fillStyle = grey;
 		        ctx.fillRect((x * blockSize) + (blockSize / 2.5), 
                              (y * blockSize) + (blockSize / 2.5), 
                              blockSize / 6, blockSize / 6);
@@ -794,7 +799,7 @@ var PACMAN = (function () {
     };
 
     function drawScore(text, position) {
-        ctx.fillStyle = "#FFFFFF";
+        ctx.fillStyle = black;
         ctx.font      = "12px BDCartoonShoutRegular";
         ctx.fillText(text, 
                      (position["new"]["x"] / 10) * map.blockSize, 
@@ -802,8 +807,8 @@ var PACMAN = (function () {
     }
     
     function dialog(text) {
-        ctx.fillStyle = "#FFFF00";
-        ctx.font      = "14px BDCartoonShoutRegular";
+        ctx.fillStyle = black;
+        ctx.font      = "16px BDCartoonShoutRegular";
         var width = ctx.measureText(text).width,
             x     = ((map.width * map.blockSize) - width) / 2;        
         ctx.fillText(text, x, (map.height * 10) + 8);
@@ -838,7 +843,7 @@ var PACMAN = (function () {
         } else if (e.keyCode === KEY.S) {
             audio.disableSound();
             localStorage["soundDisabled"] = !soundDisabled();
-        } else if (e.keyCode === KEY.P && state === PAUSE) {
+        } else if (e.keyCode === KEY.SPACEBAR && state === PAUSE) {
             audio.resume();
             map.draw(ctx);
             setState(stored);
@@ -877,13 +882,13 @@ var PACMAN = (function () {
         var topLeft  = (map.height * map.blockSize),
             textBase = topLeft + 17;
         
-        ctx.fillStyle = "#000000";
+        ctx.fillStyle = white;
         ctx.fillRect(0, topLeft, (map.width * map.blockSize), 30);
         
-        ctx.fillStyle = "#FFFF00";
+        ctx.fillStyle = black;
 
         for (var i = 0, len = user.getLives(); i < len; i++) {
-            ctx.fillStyle = "#FFFF00";
+            ctx.fillStyle = blue;
             ctx.beginPath();
             ctx.moveTo(150 + (25 * i) + map.blockSize / 2,
                        (topLeft+1) + map.blockSize / 2);
@@ -899,7 +904,7 @@ var PACMAN = (function () {
         //ctx.fillText("♪", 10, textBase);
         ctx.fillText("s", 10, textBase);
 
-        ctx.fillStyle = "#FFFF00";
+        ctx.fillStyle = black;
         ctx.font      = "14px BDCartoonShoutRegular";
         ctx.fillText("Score: " + user.theScore(), 30, textBase);
         ctx.fillText("Level: " + level, 260, textBase);
@@ -1007,6 +1012,7 @@ var PACMAN = (function () {
         audio.play("eatpill");
         timerStart = tick;
         eatenCount = 0;
+        alert("EHHHHHH OOOOOOOH FDP")
         for (i = 0; i < ghosts.length; i += 1) {
             ghosts[i].makeEatable(ctx);
         }        

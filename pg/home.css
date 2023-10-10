@@ -1,0 +1,96 @@
+/* Style pour la barre de navigation */
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Style pour le logo */
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Style pour le nom du site */
+.site-name {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+/* Style pour le bouton de navigation */
+.button {
+    background-color: #EF626C;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Style pour le contenu principal */
+.content {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+    align-items: center;
+}
+
+/* Style pour les cadres gauche et droit */
+.left-box {
+    flex: 1;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.box {
+    background-color: #EF626C;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+
+.right-box {
+    flex: 1;
+}
+
+
+/* Style pour la barre avec trois blocs space around */
+.bar-with-blocks {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.block {
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+    margin: 0 10px;
+}
+
+/* Style pour le footer */
+.footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Style pour le contenu du footer */
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
