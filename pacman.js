@@ -8,6 +8,8 @@
  * do proper ghost mechanics (blinky/wimpy etc)
  */
 
+const localStorageKey = "localScore";
+
 var NONE = 4,
   UP = 3,
   LEFT = 2,
@@ -310,6 +312,14 @@ Pacman.User = function (game, map) {
   }
 
   function theScore() {
+    const scoreLocal = {
+      score: score,
+    };
+
+    const objetEnString = JSON.stringify(scoreLocal);
+
+    localStorage.setItem(localStorageKey, objetEnString);
+
     return score;
   }
 
@@ -580,7 +590,8 @@ Pacman.Map = function (size) {
   function drawWall(ctx) {
     var i, j, p, line;
 
-    ctx.strokeStyle = "#0000FF";
+    // BARRIERE
+    ctx.strokeStyle = "#EF626C";
     ctx.lineWidth = 5;
     ctx.lineCap = "round";
 
@@ -656,6 +667,7 @@ Pacman.Map = function (size) {
       j,
       size = blockSize;
 
+    // BACKGROUND COLOR
     ctx.fillStyle = "#000";
     ctx.fillRect(0, 0, width * size, height * size);
 
@@ -682,6 +694,7 @@ Pacman.Map = function (size) {
       layout === Pacman.BLOCK ||
       layout === Pacman.BISCUIT
     ) {
+      // BACKGROUND POINT
       ctx.fillStyle = "#000";
       ctx.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
 
@@ -858,7 +871,6 @@ var PACMAN = (function () {
     audio.play("start");
     timerStart = tick;
     setState(COUNTDOWN);
-    endGame();
   }
 
   function startNewGame() {
@@ -926,7 +938,7 @@ var PACMAN = (function () {
     var topLeft = map.height * map.blockSize,
       textBase = topLeft + 17;
 
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = "tranparent";
     ctx.fillRect(0, topLeft, map.width * map.blockSize, 30);
 
     ctx.fillStyle = "#FFFF00";
@@ -1537,13 +1549,19 @@ function openPopupEnd() {
   const popupEnd = document.getElementById("popupEnd");
   const pointPara = document.getElementById("points");
 
-  console.log("Pacman.User", Pacman.User());
+  const recupLocalScore = JSON.parse(localStorage.getItem(localStorageKey));
 
-  pointPara.textContent = Pacman.User().score;
-  console.log(pointPara);
+  pointPara.textContent = `Vous avez ${recupLocalScore.score}`;
+
   popupEnd.style.display = "block";
 }
 
-function popupButtonReplay() {}
+function popupButtonReplay() {
+  location.reload();
+}
 
-function popupButtonBack() {}
+function popupButtonBack() {
+  const url =
+    "file:///C:/Users/olivi/4eme-annee-epsi/workshop/pacman-harcelement/Equipe-6/index.html";
+  window.location.href = url;
+}
