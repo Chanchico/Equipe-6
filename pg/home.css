@@ -1,6 +1,6 @@
 * {
     font-family: 'Roboto', sans-serif;
-
+    
 }
 
 /* Style pour la barre de navigation */
@@ -31,6 +31,8 @@ body {
     background-attachment: fixed;
     margin: 0;
     padding: 0;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .overlay {
@@ -57,9 +59,6 @@ body {
     margin-right: 10px;
 }
 
-/* Style pour le nom du site */
-.site-name {}
-
 /* Style pour le bouton de navigation */
 .button {
     color: #fff;
@@ -75,9 +74,7 @@ body {
 .content {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
     border-radius: 10px;
-    margin: 20px;
     align-items: center;
 }
 
@@ -85,7 +82,6 @@ body {
 .left-box {
     flex: 1;
     color: #fff;
-    padding: 40px;
     border-radius: 10px;
     margin: 40px;
     font-style: normal;
@@ -93,13 +89,6 @@ body {
     font-family: 'Roboto', sans-serif;
     color: #EF626C;
     height: auto;
-}
-
-.left-box div {
-    padding-left: 40px;
-    padding-right: 40px;
-    overflow: scroll;
-    min-height: 200px;
 }
 
 .right-box {
@@ -124,9 +113,19 @@ body {
     font-size: 20px;
 }
 
+.oooohh{
+    margin: 20px;
+}
+
+.center, a{
+text-align: center;
+}
+
+.padding{
+    padding: 20px;
+}
 .box {
     border-radius: 10px;
-    padding: 20px;
     color: #FFF;
     font-size: 17px;
     font-style: normal;
@@ -154,26 +153,25 @@ body {
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
+    margin: 60px;
 }
 
 .block {
     color: #fff;
-    padding: 20px;
     border-radius: 10px;
     flex: 1;
-    margin: 0 10px;
 }
 
+
+
 img {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
 }
 
 .txt {
-    margin: 40px;
+    margin: 60px;
     height: auto;
-    padding-left: 150px;
-    padding-right: 150px;
     color: white;
     text-align: justify;
     font-size: large;
@@ -187,7 +185,6 @@ br {
 .footer {
     flex-shrink: 0;
     color: #fff;
-    padding: 10px;
     text-align: center;
     margin-top: auto;
     position: relative;
@@ -195,7 +192,7 @@ br {
 
 .footer-content {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     margin: 0 auto;
     padding: 20px 0;
