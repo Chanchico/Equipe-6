@@ -5,13 +5,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 30px;
+}
+
+hr {
+    background-color: #ffffff81;
+    height: 3px;
+    border-radius: 5px;
+    width: 500px;
+    border: none;
+    margin: auto;
 }
 
 body {
     background-image: url('https://cdn.discordapp.com/attachments/1160866284288872458/1161273315407691806/dreamstime_xxl_212493611-scaled.jpg?ex=6537b30d&is=65253e0d&hm=f8ffe7464ed73bb1555ea29974004452fe0900a1d1428481f5cedbdb322e44fe&');
-    background-size: cover; /* Ajuste la taille de l'image pour remplir tout l'écran */
-    background-repeat: no-repeat; /* Empêche la répétition de l'image */
-    background-attachment: fixed; /* Fixe l'image en arrière-plan (ne défiler pas avec la page) */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
 }
@@ -23,9 +33,9 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1; /* Assurez-vous que le filtre est en avant-plan */
+    z-index: -1;
+    /* Assurez-vous que le filtre est en avant-plan */
 }
-
 
 /* Style pour le logo */
 .logo {
@@ -42,7 +52,6 @@ body {
 
 /* Style pour le bouton de navigation */
 .button {
-    background-color: #EF626C;
     color: #fff;
     border: none;
     border-radius: 15px;
@@ -71,7 +80,18 @@ body {
     font-style: normal;
     line-height: normal;
     font-family: 'Roboto', sans-serif;
-    color:  #EF626C;
+    color: #EF626C;
+}
+
+.right-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg-pink {
+    background-color: #EF626C;
 }
 
 .jouer {
@@ -80,8 +100,8 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
 }
+
 .box {
-    background-color: #EF626C;
     border-radius: 10px;
     padding: 20px;
     color: #FFF;
@@ -89,6 +109,11 @@ body {
     font-style: normal;
     line-height: normal;
     font-family: 'Roboto', sans-serif;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .box-2 {
@@ -101,13 +126,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-
-.right-box {
-    flex: 1;
-}
-
-
-/* Style pour la barre avec trois blocs space around */
+/* Style pour la barre avec trois blocs */
 .bar-with-blocks {
     display: flex;
     justify-content: space-around;
@@ -122,18 +141,60 @@ body {
     margin: 0 10px;
 }
 
-/* Style pour le footer */
-.footer {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-around;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
+img {
+    width: 200px;
+    height: 200px;
 }
 
-/* Style pour le contenu du footer */
+.txt {
+    margin: 40px;
+    height: 250px;
+    color: white;
+    padding: 30px;
+}
+
+/* Style pour le footer */
+.footer {
+    flex-shrink: 0;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin-top: auto;
+    position: relative;
+}
+
 .footer-content {
-    max-width: 800px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     margin: 0 auto;
+    padding: 20px 0;
+    /* Ajoutez un espacement supérieur et inférieur pour l'esthétique */
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+}
+
+
+.footer-section a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin: 10px;
+}
+
+.footer-logo {
+    width: 100px;
+    height: auto;
+}
+
+.social-link {
+    color: #fff;
+    text-decoration: none;
+    margin: 5px;
 }
