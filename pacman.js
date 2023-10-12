@@ -312,7 +312,7 @@ Pacman.User = function (game, map) {
     eaten = null,
     due = null,
     lives = null,
-    score = 5,
+    score = 0,
     keyMap = {};
 
   keyMap[KEY.ARROW_LEFT] = LEFT;
@@ -327,7 +327,9 @@ Pacman.User = function (game, map) {
     }
   }
 
-
+  function addScoreQ() {
+    score += 1;
+  }
 
   function theScore() {
     const scoreLocal = {
@@ -484,6 +486,7 @@ Pacman.User = function (game, map) {
 
       if (block === Pacman.PILL) {
         eaten += 1;
+        // score += 1; //test
         game.eatenPill();
       }
     }
@@ -570,6 +573,7 @@ Pacman.User = function (game, map) {
     getLives: getLives,
     score: score,
     addScore: addScore,
+    addScoreQ: addScoreQ,
     theScore: theScore,
     keyDown: keyDown,
     move: move,
@@ -924,9 +928,6 @@ var PACMAN = (function () {
   }
 
   function restartPause() {
-    for (var i = 0; i < ghosts.length; i += 1) {
-      ghosts[i].reset();
-    }
     audio.play("start");
     timerStart = tick;
     setState(COUNTDOWN);
@@ -1567,12 +1568,12 @@ function closePopup() {
 
 // Function to handle response selection
 function selectResponse(button) {
-
   let id = button.getAttribute('key');
   const index = +id;
   localStorage.getItem("")
   let questions = JSON.parse(localStorage.getItem(localQuestionKey));
   let questionRestante = +localStorage.getItem(localQuestionRestanteKey)
+  //Si on a la bonne réponse
   if (button.textContent === questions[index].correctAnswer) {
     let scoreOb = JSON.parse(localStorage.getItem(localStorageKey));
     let score = scoreOb.score;
@@ -1580,6 +1581,7 @@ function selectResponse(button) {
     scoreOb.score = score;
     console.log(scoreOb)
     localStorage.setItem(localStorageKey, scoreOb)
+    // addScoreQ()
     window.alert("Bonne réponse");
   } else {
     window.alert("Faux");
@@ -1606,7 +1608,7 @@ function openPopupEnd() {
 
   const recupLocalScore = JSON.parse(localStorage.getItem(localStorageKey));
 
-  pointPara.textContent = `Félicitation vous avez ${recupLocalScore.score}`;
+  pointPara.textContent = `Félicitations vous avez ${recupLocalScore.score}`;
 
   popupEnd.style.display = "block";
 }
@@ -1619,7 +1621,7 @@ function popupButtonReplay() {
 function popupButtonBack() {
   localStorage.removeItem(localStorageKey);
   const url =
-    "file:///C:/Users/olivi/4eme-annee-epsi/workshop/pacman-harcelement/Equipe-6/index.html";
+    "pg/home.html";
   window.location.href = url;
 }
 
