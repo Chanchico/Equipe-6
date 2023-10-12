@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>HTML5 Pacman</title>
+<<<<<<< Updated upstream
     
     <style type="text/css">
       @font-face {
@@ -10,6 +11,67 @@
         src: url('BD_Cartoon_Shout-webfont.ttf') format('truetype');
 	    font-weight: normal;
 	    font-style: normal;
+=======
+
+    <link rel="stylesheet" type="text/css" href="ok.css" />
+  </head>
+
+  <body>
+    <div id="shim">shim for font face</div>
+
+    <h1>HTML5 Pacman</h1>
+
+    <!-- <a href="http://arandomurl.com/">Writeup</a> |
+  Code on <a href="http://arandomurl.com/">Github</a>
+  <div id="app"></div> -->
+    <div id="pacman"></div>
+
+    <div id="popup" class="popup">
+      <h3 id="question">Question: How many points do you want to gain?</h3>
+
+      <hr />
+      <br />
+      <button id="R1" onclick="selectResponse(this)">10 Points</button>
+      <button id="R2" onclick="selectResponse(this)">20 Points</button>
+      <button id="R3" onclick="selectResponse(this)">30 Points</button>
+    </div>
+
+    <div id="popupEnd" class="popupEnd">
+      <p id="points">Vos points : 600</p>
+      <hr />
+      <br />
+      <button onclick="popupButtonReplay()">Rejouer</button>
+      <button onclick="popupButtonBack()">Accueil</button>
+    </div>
+
+    <dialog>
+      <button >
+        Fermer
+      </button>
+      <p>Votre réponse est : </p>
+    </dialog>
+
+    <script src="question.js"></script>
+    <script src="pacman.js"></script>
+    <script src="modernizr-1.5.min.js"></script>
+
+    <script>
+      var el = document.getElementById("pacman");
+
+      if (
+        Modernizr.canvas &&
+        Modernizr.localstorage &&
+        Modernizr.audio &&
+        (Modernizr.audio.ogg || Modernizr.audio.mp3)
+      ) {
+        window.setTimeout(function () {
+          PACMAN.init(el, "./");
+        }, 0);
+      } else {
+        el.innerHTML =
+          "Sorry, needs a decent browser<br /><small>" +
+          "(firefox 3.6+, Chrome 4+, Opera 10+ and Safari 4+)</small>";
+>>>>>>> Stashed changes
       }
       #pacman {
         height:450px;

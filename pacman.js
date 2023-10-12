@@ -1267,3 +1267,120 @@ Object.prototype.clone = function () {
     }
     return newObj;
 };
+<<<<<<< Updated upstream
+=======
+
+const pe = new KeyboardEvent("keydown", {
+  key: "p",
+  code: "KeyP",
+  keyCode: 80,
+  which: 80,
+  charCode: 0,
+  shiftKey: false,
+  ctrlKey: false,
+  altKey: false,
+  metaKey: false,
+  bubbles: true,
+  cancelable: true,
+});
+
+
+function openPopup(index) {
+  const popup = document.getElementById("popup");
+  const question = document.getElementById("question");
+  const R1 = document.getElementById("R1");
+  const R2 = document.getElementById("R2");
+  const R3 = document.getElementById("R3");
+
+  let questions = JSON.parse(localStorage.getItem(localQuestionKey));
+  question.textContent = questions[index].question;
+  R1.textContent = questions[index].answers[0];
+  R1.setAttribute("key", index);
+  R2.textContent = questions[index].answers[1];
+  R2.setAttribute("key", index);
+  R3.textContent = questions[index].answers[2];
+
+  R3.setAttribute("key", index);
+
+  document.dispatchEvent(pe);
+  popup.style.display = "block";
+}
+
+// Function to close the popup
+function closePopup() {
+  const popup = document.getElementById("popup");
+
+  document.dispatchEvent(pe);
+
+  popup.style.display = "none";
+}
+
+const dialog = document.querySelector("dialog");
+const closeButton = document.querySelector("dialog button");
+
+// Function to handle response selection
+function selectResponse(button) {
+  let id = button.getAttribute('key');
+  const index = +id;
+  localStorage.getItem("")
+  let questions = JSON.parse(localStorage.getItem(localQuestionKey));
+  let questionRestante = +localStorage.getItem(localQuestionRestanteKey)
+  if (button.textContent === questions[index].correctAnswer) {
+
+    let scoreOb = JSON.parse(localStorage.getItem(localStorageKey))
+    let score = scoreOb.score;
+    score += 50;
+    scoreOb.score = score;
+    console.log(scoreOb)
+    localStorage.setItem(localStorageKey, scoreOb)
+    // ajouter une popup ici
+    dialog.showModal()
+    closeButton.addEventListener("click", () => {
+      dialog.close()
+      closePopup()})
+  } else {
+    //ajouter une popup ici
+    dialog.showModal()
+    closeButton.addEventListener("click", () => {
+      dialog.close()
+      closePopup()})
+  }
+
+  questions.splice(index, 1);
+  questionRestante--;
+
+  localStorage.setItem(localQuestionKey, JSON.stringify(questions))
+  localStorage.setItem(localQuestionRestanteKey, questionRestante)
+  
+  document.dispatchEvent(pe);
+}
+
+// Simulate opening the popup when Pac-Man eats a pill
+function simulatePillEating() {
+  openPopup();
+}
+
+function openPopupEnd() {
+  const popupEnd = document.getElementById("popupEnd");
+  const pointPara = document.getElementById("points");
+
+  const recupLocalScore = JSON.parse(localStorage.getItem(localStorageKey));
+
+  pointPara.textContent = `Félicitation vous avez ${recupLocalScore.score}`;
+
+  popupEnd.style.display = "block";
+}
+
+function popupButtonReplay() {
+  localStorage.removeItem(localStorageKey);
+  location.reload();
+}
+
+function popupButtonBack() {
+  localStorage.removeItem(localStorageKey);
+  const url =
+    "file:///C:/Users/olivi/4eme-annee-epsi/workshop/pacman-harcelement/Equipe-6/index.html";
+  window.location.href = url;
+}
+
+>>>>>>> Stashed changes
