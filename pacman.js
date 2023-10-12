@@ -12,6 +12,8 @@ const localStorageKey = "localScore";
 const localQuestionKey = "localQuestions"
 const localQuestionRestanteKey = "localQuestionsRestante"
 
+localStorage.setItem(localStorageKey, 0);
+
 var white = "#F6E8EA";
 var pink = "#EF626C";
 var black = "#000000";
@@ -330,15 +332,7 @@ Pacman.User = function (game, map) {
 
 
   function theScore() {
-    const scoreLocal = {
-      score: score,
-    };
-
-    const objetEnString = JSON.stringify(scoreLocal);
-
-    localStorage.setItem(localStorageKey, objetEnString);
-
-    return score;
+    return localStorage.getItem(localStorageKey)
   }
 
   function loseLife() {
@@ -1193,8 +1187,6 @@ var PACMAN = (function () {
 
   return {
     init: init,
-    'questionsRestante': questionsRestante,
-    'questions': questions
   };
 })();
 
@@ -1573,12 +1565,13 @@ function selectResponse(button) {
   let questions = JSON.parse(localStorage.getItem(localQuestionKey));
   let questionRestante = +localStorage.getItem(localQuestionRestanteKey)
   if (button.textContent === questions[index].correctAnswer) {
-    let scoreOb = JSON.parse(localStorage.getItem(localStorageKey));
-    let score = scoreOb.score;
+    let score = +localStorage.getItem(localStorageKey);
+    console.log(score)
+    console.log(typeof score)
     score += 50;
-    scoreOb.score = score;
-    console.log(scoreOb)
-    localStorage.setItem(localStorageKey, scoreOb)
+    console.log(score);
+    localStorage.setItem(localStorageKey, score);
+    
     window.alert("Bonne réponse");
   } else {
     window.alert("Faux");
@@ -1603,9 +1596,9 @@ function openPopupEnd() {
   const popupEnd = document.getElementById("popupEnd");
   const pointPara = document.getElementById("points");
 
-  const recupLocalScore = JSON.parse(localStorage.getItem(localStorageKey));
+  const recupLocalScore = localStorage.getItem(localStorageKey);
 
-  pointPara.textContent = `Félicitation vous avez ${recupLocalScore.score}`;
+  pointPara.textContent = `Félicitation vous avez ${recupLocalScore}`;
 
   popupEnd.style.display = "block";
 }
@@ -1621,4 +1614,3 @@ function popupButtonBack() {
     "file:///C:/Users/olivi/4eme-annee-epsi/workshop/pacman-harcelement/Equipe-6/index.html";
   window.location.href = url;
 }
-
