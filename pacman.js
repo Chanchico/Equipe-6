@@ -459,7 +459,7 @@ Pacman.User = function (game, map) {
       map.setBlock(nextWhole, Pacman.EMPTY);
       addScore(block === Pacman.BISCUIT ? 0 : 50);
 
-      if (eaten === 2) {
+      if (eaten === 4) {
         game.completedLevel();
       }
 
@@ -643,7 +643,8 @@ Pacman.Map = function (size) {
         if (map[i][j] === Pacman.PILL) {
           ctx.beginPath();
 
-          ctx.fillStyle = "#000";
+          // BACKGROUND BIG POINT
+          ctx.fillStyle = "#1C1C1C";
           ctx.fillRect(j * blockSize, i * blockSize, blockSize, blockSize);
 
           ctx.fillStyle = "#FFF";
@@ -668,7 +669,7 @@ Pacman.Map = function (size) {
       size = blockSize;
 
     // BACKGROUND COLOR
-    ctx.fillStyle = "#000";
+    ctx.fillStyle = "#1C1C1C";
     ctx.fillRect(0, 0, width * size, height * size);
 
     drawWall(ctx);
@@ -695,7 +696,7 @@ Pacman.Map = function (size) {
       layout === Pacman.BISCUIT
     ) {
       // BACKGROUND POINT
-      ctx.fillStyle = "#000";
+      ctx.fillStyle = "#1C1C1C";
       ctx.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
 
       if (layout === Pacman.BISCUIT) {
@@ -1086,7 +1087,7 @@ var PACMAN = (function () {
     map.reset();
     user.newLevel();
 
-    if (level < 2) {
+    if (level < 4) {
       startLevel();
     } else {
       endGame();
@@ -1551,16 +1552,18 @@ function openPopupEnd() {
 
   const recupLocalScore = JSON.parse(localStorage.getItem(localStorageKey));
 
-  pointPara.textContent = `Vous avez ${recupLocalScore.score}`;
+  pointPara.textContent = `Félicitation vous avez ${recupLocalScore.score}`;
 
   popupEnd.style.display = "block";
 }
 
 function popupButtonReplay() {
+  localStorage.removeItem(localStorageKey);
   location.reload();
 }
 
 function popupButtonBack() {
+  localStorage.removeItem(localStorageKey);
   const url =
     "file:///C:/Users/olivi/4eme-annee-epsi/workshop/pacman-harcelement/Equipe-6/index.html";
   window.location.href = url;
