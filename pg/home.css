@@ -1,6 +1,6 @@
 * {
     font-family: 'Roboto', sans-serif;
-    
+
 }
 
 /* Style pour la barre de navigation */
@@ -54,8 +54,8 @@ body {
 
 /* Style pour le logo */
 .logo {
-    width: 40px;
-    height: 40px;
+    width: 150px;
+    height: auto;
     margin-right: 10px;
 }
 
@@ -113,17 +113,18 @@ body {
     font-size: 20px;
 }
 
-.oooohh{
+.oooohh {
     margin: 20px;
 }
 
-.center, a{
-text-align: center;
+.center, a {
+    text-align: center;
 }
 
-.padding{
+.padding {
     padding: 20px;
 }
+
 .box {
     border-radius: 10px;
     color: #FFF;
@@ -196,7 +197,6 @@ br {
     align-items: center;
     margin: 0 auto;
     padding: 20px 0;
-    /* Ajoutez un espacement supérieur et inférieur pour l'esthétique */
 }
 
 .footer-section {
@@ -237,4 +237,9 @@ br {
     background-color: rgba(0, 0, 0, 0.145);
     filter: brightness(0) invert(1);
     border-radius: 20%;
+}
+
+.oooohh:hover {
+    background-color: rgba(0, 0, 0, 0.145);
+    border: solid 1px white;
 }
