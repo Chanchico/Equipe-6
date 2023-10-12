@@ -9,6 +9,11 @@
     height: 450px;
     width: 342px;
     margin: 20px auto;
+
+}
+
+canvas {
+    border-radius: 10px;
 }
 
 #shim {
@@ -115,4 +120,98 @@ hr {
 
 .close-button:hover {
     background-color: #cc0000;
+}
+
+#title {
+    color: white
+}
+
+/* Style pour le footer */
+.footer {
+    flex-shrink: 0;
+    color: #fff;
+    text-align: center;
+    margin-top: auto;
+    position: relative;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+}
+
+
+.footer-section a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin: 10px;
+}
+
+.footer-logo {
+    width: 100px;
+    height: auto;
+}
+
+.social-link {
+    color: #fff;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.icon {
+    margin: 10px;
+    padding: 10px;
+    width: 30px;
+    height: auto;
+}
+
+.icon:hover {
+    background-color: rgba(0, 0, 0, 0.145);
+    filter: brightness(0) invert(1);
+    border-radius: 20%;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+
+}
+
+/* Style pour la barre de navigation */
+.navbar {
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+hr {
+    background-color: #ffffff81;
+    height: 3px;
+    border-radius: 5px;
+    width: 500px;
+    border: none;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Style pour le logo */
+.logo {
+    width: 150px;
+    height: auto;
+    margin-right: 10px;
 }
