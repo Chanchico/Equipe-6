@@ -9,6 +9,16 @@
  */
 
 const localStorageKey = "localScore";
+const localQuestionKey = "localQuestions"
+const localQuestionRestanteKey = "localQuestionsRestante"
+
+
+let questions = JSON.stringify(jsonData);
+let questionsRestante = questions.length;
+localStorage.setItem(localQuestionKey, questions);
+localStorage.setItem(localQuestionRestanteKey, 12)
+
+
 
 var NONE = 4,
   UP = 3,
@@ -457,7 +467,6 @@ Pacman.User = function (game, map) {
       block === Pacman.PILL
     ) {
       map.setBlock(nextWhole, Pacman.EMPTY);
-      addScore(block === Pacman.BISCUIT ? 0 : 50);
 
       if (eaten === 4) {
         game.completedLevel();
@@ -834,9 +843,7 @@ var PACMAN = (function () {
     timer = null,
     map = null,
     user = null,
-    stored = null,
-    questions = JSON.parse(JSON.stringify(jsonData)),
-    questionsRestante = 12;
+    stored = null
 
   function getTick() {
     return tick;
@@ -1009,7 +1016,6 @@ var PACMAN = (function () {
           eatenCount += 1;
           nScore = eatenCount * 50;
           drawScore(nScore, ghostPos[i]);
-          user.addScore(nScore);
           setState(EATEN_PAUSE);
           timerStart = tick;
         } else if (ghosts[i].isDangerous()) {
@@ -1072,10 +1078,8 @@ var PACMAN = (function () {
     audio.play("eatpill");
     timerStart = tick;
     eatenCount = 0;
-    const randomQuestionNumber = Math.floor(Math.random() * questionsRestante);
-
-    openPopup(randomQuestionNumber, questions);
-    questions.splice(randomQuestionNumber);
+    const randomQuestionNumber = Math.floor(Math.random() * +localStorage.getItem(localQuestionRestanteKey));
+    openPopup(randomQuestionNumber);
     for (i = 0; i < ghosts.length; i += 1) {
       ghosts[i].makeEatable(ctx);
     }
@@ -1176,6 +1180,8 @@ var PACMAN = (function () {
 
   return {
     init: init,
+    'questionsRestante': questionsRestante,
+    'questions': questions
   };
 })();
 
@@ -1513,16 +1519,24 @@ const pe = new KeyboardEvent("keydown", {
   cancelable: true,
 });
 
-function openPopup(index, questions) {
-  const popup = document.getElementById("popup");
-  const question = document.getElementById("question");
-  const R1 = document.getElementById("R1");
-  const R2 = document.getElementById("R2");
-  const R3 = document.getElementById("R3");
+function openPopup(index) {
+    const popup = document.getElementById("popup");
+    const question = document.getElementById("question");
+    const R1 = document.getElementById("R1");
+    const R2 = document.getElementById("R2");
+    const R3 = document.getElementById("R3");
 
-  console.log("popup affiche");
-  document.dispatchEvent(pe);
-  popup.style.display = "block";
+    let questions = JSON.parse(localStorage.getItem(localQuestionKey));
+    question.textContent = questions[index].question;
+    R1.textContent =  questions[index].answers[0];
+    R1.setAttribute("key", index);
+    R2.textContent = questions[index].answers[1];
+    R2.setAttribute("key", index);
+    R3.textContent = questions[index].answers[2];
+    R3.setAttribute("key", index);
+    
+    document.dispatchEvent(pe);
+    popup.style.display = "block";
 }
 
 // Function to close the popup
@@ -1535,10 +1549,31 @@ function closePopup() {
 }
 
 // Function to handle response selection
-function selectResponse(points) {
-  // You can perform any action here with the selected points value
-  console.log(`Selected ${points} points.`);
-  closePopup();
+function selectResponse(button) {
+    let id = button.getAttribute('key');
+    const index = +id;
+    localStorage.getItem("")
+    let questions =  JSON.parse(localStorage.getItem(localQuestionKey));
+    let questionRestante = +localStorage.getItem(localQuestionRestanteKey)
+    if(button.textContent === questions[index].correctAnswer){
+        let scoreOb =  JSON.parse(localStorage.getItem(localStorageKey));
+        let score = scoreOb.score;
+        score += 50;
+        scoreOb.score = score;
+        console.log(scoreOb)
+        localStorage.setItem(localStorageKey, scoreOb)
+        window.alert("Bonne réponse");
+   }else {
+        window.alert("Faux");
+   }
+
+   questions.splice(index, 1);
+   questionRestante --;
+
+   localStorage.setItem(localQuestionKey,  JSON.stringify(questions))
+   localStorage.setItem(localQuestionRestanteKey, questionRestante)
+    closePopup();
+    
 }
 
 // Simulate opening the popup when Pac-Man eats a pill
