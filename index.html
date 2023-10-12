@@ -4,15 +4,157 @@
     <meta charset="utf-8" />
     <title>HTML5 Pacman</title>
 
-    <link type="text/css" rel="stylesheet" href="ok.css" />
+    <style type="text/css">
+      @font-face {
+        font-family: "BDCartoonShoutRegular";
+        src: url("BD_Cartoon_Shout-webfont.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      #pacman {
+        height: 450px;
+        width: 342px;
+        margin: 20px auto;
+      }
+
+      #shim {
+        font-family: BDCartoonShoutRegular;
+        position: absolute;
+        visibility: hidden;
+      }
+
+      h1 {
+        font-family: BDCartoonShoutRegular;
+        text-align: center;
+      }
+
+      body {
+        margin: 0px auto;
+        font-family: sans-serif;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url("https://media.discordapp.net/attachments/1160866284288872458/1161600009461047346/dreamstime_xxl_212493611-scaled.png?ex=6538e34f&is=65266e4f&hm=905ae14730451ddf95f1ab31f5727b23bbe949fdcf714debe2be29a825b4429e&=&width=1007&height=671");
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .popup,
+      .popupEnd {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #d9d9d9;
+        padding: 30px;
+        z-index: 9999;
+        border-radius: 20px;
+      }
+
+      .popup {
+        text-align: left;
+      }
+
+      .popupEnd {
+        text-align: center;
+      }
+
+      #question {
+        width: 90%;
+        text-align: left;
+        color: #ef626c;
+      }
+
+      .popup button,
+      .popupEnd button {
+        border-radius: 10px;
+        border: 1px solid #ef626c;
+        padding: 10px 20px;
+        background-color: #ef626c;
+        color: white;
+      }
+
+      .popup button {
+        display: block;
+        margin-bottom: 25px;
+        width: 100%;
+        text-align: left;
+      }
+
+      .popupEnd p {
+        width: 100%;
+        text-align: center;
+      }
+
+      .popupEnd button:hover,
+      .popup button:hover {
+        transition: 0.2s;
+        border: 1px solid #ef626c;
+        background-color: #d9d9d9;
+        color: #ef626c;
+      }
+
+      #points {
+        color: #ef626c;
+        font-size: 20px;
+      }
+
+      hr {
+        border: 1px solid #ef626c;
+      }
+
+      .close-button {
+        background-color: #ff0000;
+        color: #fff;
+        margin-top: 10px;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .close-button:hover {
+        background-color: #cc0000;
+      }
+    </style>
   </head>
 
   <body>
     <div id="shim">shim for font face</div>
 
-    <h1>Pacman Anti-harcèlement</h1>
+    <h1>HTML5 Pacman</h1>
 
+    <!-- <a href="http://arandomurl.com/">Writeup</a> |
+  Code on <a href="http://arandomurl.com/">Github</a>
+  <div id="app"></div> -->
     <div id="pacman"></div>
+
+    <div id="popup" class="popup">
+      <h3 id="question">Question: How many points do you want to gain?</h3>
+
+      <hr />
+      <br />
+      <button id="R1" onclick="selectResponse(this)">10 Points</button>
+      <button id="R2" onclick="selectResponse(this)">20 Points</button>
+      <button id="R3" onclick="selectResponse(this)">30 Points</button>
+    </div>
+
+    <div id="popupEnd" class="popupEnd">
+      <p id="points">Vos points : 600</p>
+      <hr />
+      <br />
+      <button onclick="popupButtonReplay()">Rejouer</button>
+      <button onclick="popupButtonBack()">Accueil</button>
+    </div>
+
+    <script src="question.js"></script>
     <script src="pacman.js"></script>
     <script src="modernizr-1.5.min.js"></script>
 
@@ -34,24 +176,6 @@
           "(firefox 3.6+, Chrome 4+, Opera 10+ and Safari 4+)</small>";
       }
     </script>
-
     <a href="pg/home.html">Accueil</a>
-    <!-- <div class="popup-container">
-      <div class="popup" id="popup">
-        <div class="card">
-          <div class="card-inner">
-            <h2 id="question">Tema la carte ?</h2>
-            <p id="answer">alors frr t'en pense quoi ?</p>
-          </div>
-          <div class="card-back">
-            <p>Réponse : La réponse est A.</p>
-          </div>
-        </div>
-        <div class="buttons">
-          <button id="show-answer">Voir la réponse</button>
-          <button id="close-popup">Fermer</button>
-        </div>
-      </div>
-    </div> -->
   </body>
 </html>
