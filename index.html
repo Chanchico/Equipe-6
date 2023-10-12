@@ -138,6 +138,7 @@
 
   <div id="popup" class="popup">
     <h3 id="question">Question: How many points do you want to gain?</h3>
+
     <hr>
     <br>
     <button id="R1" onclick="selectResponse(this)">10 Points</button>
@@ -151,6 +152,7 @@
   <br>
   <button onclick="popupButtonReplay()">Rejouer</button>
   <button onclick="popupButtonBack()">Accueil</button>
+
 </div>
 
   <script src="question.js"></script>
@@ -164,6 +166,7 @@
     if (Modernizr.canvas && Modernizr.localstorage && 
         Modernizr.audio && (Modernizr.audio.ogg || Modernizr.audio.mp3)) {
       window.setTimeout(function () { PACMAN.init(el, "./"); }, 0);
+
     } else { 
       el.innerHTML = "Sorry, needs a decent browser<br /><small>" + 
         "(firefox 3.6+, Chrome 4+, Opera 10+ and Safari 4+)</small>";

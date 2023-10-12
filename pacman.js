@@ -301,6 +301,7 @@ Pacman.Ghost = function (game, map, colour) {
 };
 
 Pacman.User = function (game, map) {
+
   var position = null,
     direction = null,
     eaten = null,
@@ -320,6 +321,8 @@ Pacman.User = function (game, map) {
       lives += 1;
     }
   }
+
+
 
   function theScore() {
     const scoreLocal = {
@@ -440,9 +443,11 @@ Pacman.User = function (game, map) {
       npos = getNewCoord(direction, position);
     }
 
+
     if (onGridSquare(position) && map.isWallSpace(next(npos, direction))) {
       direction = NONE;
     }
+
 
     if (direction === NONE) {
       return { new: position, old: position };
@@ -989,6 +994,7 @@ var PACMAN = (function () {
   function mainDraw() {
     var diff, u, i, len, nScore;
 
+
     ghostPos = [];
 
     for (i = 0, len = ghosts.length; i < len; i += 1) {
@@ -1098,6 +1104,7 @@ var PACMAN = (function () {
     }
   }
 
+
   function endGame(score) {
     console.log("vous avez gagné");
     openPopupEnd();
@@ -1175,6 +1182,7 @@ var PACMAN = (function () {
     document.addEventListener("keydown", keyDown, true);
     document.addEventListener("keypress", keyPress, true);
 
+
     timer = window.setInterval(mainLoop, 1000 / Pacman.FPS);
   }
 
@@ -1184,6 +1192,7 @@ var PACMAN = (function () {
     'questions': questions
   };
 })();
+
 
 /* Human readable keyCode index */
 var KEY = {
@@ -1519,6 +1528,7 @@ const pe = new KeyboardEvent("keydown", {
   cancelable: true,
 });
 
+
 function openPopup(index) {
     const popup = document.getElementById("popup");
     const question = document.getElementById("question");
@@ -1533,6 +1543,7 @@ function openPopup(index) {
     R2.textContent = questions[index].answers[1];
     R2.setAttribute("key", index);
     R3.textContent = questions[index].answers[2];
+
     R3.setAttribute("key", index);
     
     document.dispatchEvent(pe);
@@ -1550,6 +1561,7 @@ function closePopup() {
 
 // Function to handle response selection
 function selectResponse(button) {
+
     let id = button.getAttribute('key');
     const index = +id;
     localStorage.getItem("")
@@ -1572,6 +1584,7 @@ function selectResponse(button) {
 
    localStorage.setItem(localQuestionKey,  JSON.stringify(questions))
    localStorage.setItem(localQuestionRestanteKey, questionRestante)
+
     closePopup();
     
 }
@@ -1603,3 +1616,4 @@ function popupButtonBack() {
     "file:///C:/Users/olivi/4eme-annee-epsi/workshop/pacman-harcelement/Equipe-6/index.html";
   window.location.href = url;
 }
+
