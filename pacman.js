@@ -852,11 +852,11 @@ var PACMAN = (function () {
     return tick;
   }
 
-  function drawScore(text, position) {
+  function drawScore(position) {
     ctx.fillStyle = black;
     ctx.font = "12px BDCartoonShoutRegular";
     ctx.fillText(
-      text,
+      "miam",
       (position["new"]["x"] / 10) * map.blockSize,
       ((position["new"]["y"] + 5) / 10) * map.blockSize
     );
@@ -1017,7 +1017,7 @@ var PACMAN = (function () {
           ghosts[i].eat();
           eatenCount += 1;
           nScore = eatenCount * 50;
-          drawScore(nScore, ghostPos[i]);
+          drawScore(ghostPos[i]);
           setState(EATEN_PAUSE);
           timerStart = tick;
         } else if (ghosts[i].isDangerous()) {
@@ -1102,7 +1102,6 @@ var PACMAN = (function () {
 
 
   function endGame(score) {
-    console.log("vous avez gagné");
     openPopupEnd();
   }
 
@@ -1563,10 +1562,7 @@ function selectResponse(button) {
   //Si on a la bonne réponse
   if (button.textContent === questions[index].correctAnswer) {
     let score = +localStorage.getItem(localStorageKey);
-    console.log(score)
-    console.log(typeof score)
     score += 50;
-    console.log(score);
     localStorage.setItem(localStorageKey, score);
 
     window.alert("Bonne réponse");
