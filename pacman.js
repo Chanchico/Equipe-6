@@ -327,10 +327,6 @@ Pacman.User = function (game, map) {
     }
   }
 
-  function addScoreQ() {
-    score += 1;
-  }
-
   function theScore() {
     const scoreLocal = {
       score: score,
@@ -523,7 +519,7 @@ Pacman.User = function (game, map) {
       return;
     }
 
-    ctx.fillStyle = white;
+    ctx.fillStyle = pink;
     ctx.beginPath();
     ctx.moveTo(
       (position.x / 10) * size + half,
@@ -573,7 +569,6 @@ Pacman.User = function (game, map) {
     getLives: getLives,
     score: score,
     addScore: addScore,
-    addScoreQ: addScoreQ,
     theScore: theScore,
     keyDown: keyDown,
     move: move,
@@ -1581,7 +1576,6 @@ function selectResponse(button) {
     scoreOb.score = score;
     console.log(scoreOb)
     localStorage.setItem(localStorageKey, scoreOb)
-    // addScoreQ()
     window.alert("Bonne réponse");
   } else {
     window.alert("Faux");
