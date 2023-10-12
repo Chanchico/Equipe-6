@@ -1529,6 +1529,8 @@ function openPopup(index) {
   const R2 = document.getElementById("R2");
   const R3 = document.getElementById("R3");
 
+  
+
   let questions = JSON.parse(localStorage.getItem(localQuestionKey));
   question.textContent = questions[index].question;
   R1.textContent = questions[index].answers[0];
@@ -1547,6 +1549,25 @@ function openPopup(index) {
 function closePopup() {
   const popup = document.getElementById("popup");
 
+  const explication = document.getElementById("explanationDIV")
+  explication.style.display = "none"
+
+  const R1 = document.getElementById("R1");
+  const R2 = document.getElementById("R2");
+  const R3 = document.getElementById("R3");
+
+  R1.disabled = false; // Disable the R1 button
+  R2.disabled = false; // Disable the R2 button
+  R3.disabled = false; // Disable the R3 button
+
+  R1.style.removeProperty("background");
+  R2.style.removeProperty("background");
+  R3.style.removeProperty("background");
+
+  R1.style.removeProperty("border-color");
+  R2.style.removeProperty("border-color");
+  R3.style.removeProperty("border-color");
+
   document.dispatchEvent(pe);
 
   popup.style.display = "none";
@@ -1555,28 +1576,45 @@ function closePopup() {
 // Function to handle response selection
 function selectResponse(button) {
   let id = button.getAttribute('key');
+  
   const index = +id;
   localStorage.getItem("")
   let questions = JSON.parse(localStorage.getItem(localQuestionKey));
   let questionRestante = +localStorage.getItem(localQuestionRestanteKey)
-  //Si on a la bonne réponse
+  const h1Explication =  document.getElementById("explanationH");
+
+  R1.disabled = true; // Disable the R1 button
+  R2.disabled = true; // Disable the R2 button
+  R3.disabled = true; // Disable the R3 button
+  
   if (button.textContent === questions[index].correctAnswer) {
     let score = +localStorage.getItem(localStorageKey);
     score += 50;
     localStorage.setItem(localStorageKey, score);
 
-    window.alert("Bonne réponse");
+    h1Explication.textContent = "Bravo !"
+    h1Explication.style.color = "#32CD32";
+    button.style.background = "#32CD32"
+    button.style.borderColor  = "#32CD32"
   } else {
-    window.alert("Faux");
+    h1Explication.textContent = "Rater !"
+    h1Explication.style.color = "#DC143C"
+    button.style.background = "#DC143C"
+    button.style.borderColor  = "#DC143C "
   }
-
+  
+  const explication = document.getElementById("explanationDIV");
+  explication.style.display = "block";
+  const pE = document.getElementById("explanationP");
+  pE.textContent = questions[index].explanation;
   questions.splice(index, 1);
   questionRestante--;
 
+ 
   localStorage.setItem(localQuestionKey, JSON.stringify(questions))
   localStorage.setItem(localQuestionRestanteKey, questionRestante)
 
-  closePopup();
+  
 
 }
 
